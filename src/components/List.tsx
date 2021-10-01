@@ -1,33 +1,22 @@
-import React from "react";
+import React from 'react';
 
-interface IProps {
-  people: {
-    name: string
-    age: number
-    url: string
-    note?: string
-  }[]
-}
+import { IState as IProps } from '../App';
 
 const List: React.FC<IProps> = ({ people }) => {
   const renderList = (): JSX.Element[] => {
-    return people.map(person => (
-      <li className='List'>
+    return people.map((person) => (
+      <li key={person.name} className="List">
         <div className="List-header">
-          <img src={person.url} alt={person.name} />
+          <img className="List-img" src={person.url} alt={person.name} />
           <h2>{person.name}</h2>
         </div>
         <p>{person.age} years old</p>
-        <p className='List-note'>{person.note}</p>
+        <p className="List-note">{person.notes}</p>
       </li>
-    ))
-  }
+    ));
+  };
 
-  return (
-    <ul>
-      {renderList()}
-    </ul>
-  )
-}
+  return <ul>{renderList()}</ul>;
+};
 
-export default List
+export default List;
